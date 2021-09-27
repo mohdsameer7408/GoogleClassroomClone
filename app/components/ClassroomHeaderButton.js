@@ -1,0 +1,16 @@
+import React from "react";
+import { HeaderButton } from "react-navigation-header-buttons";
+import { Ionicons } from "@expo/vector-icons";
+
+const ClassroomHeaderButton = (props) => {
+  return (
+    <HeaderButton
+      {...props}
+      iconSize={28}
+      color="#000"
+      IconComponent={Ionicons}
+    />
+  );
+};
+
+export default ClassroomHeaderButton;
