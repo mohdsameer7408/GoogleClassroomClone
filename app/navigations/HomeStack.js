@@ -10,13 +10,17 @@ const Stack = createNativeStackNavigator();
 const HomeStack = ({ navigation }) => {
   return (
     <Stack.Navigator
-      screenOptions={{
+      screenOptions={({ navigation }) => ({
         headerLeft: () => (
           <HeaderButtons HeaderButtonComponent={ClassroomHeaderButton}>
-            <Item title="menu" iconName="menu" onPress={() => {}} />
+            <Item
+              title="menu"
+              iconName="menu"
+              onPress={() => navigation.openDrawer()}
+            />
           </HeaderButtons>
         ),
-      }}
+      })}
     >
       <Stack.Screen
         name="HomeScreen"

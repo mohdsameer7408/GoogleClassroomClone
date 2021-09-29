@@ -1,11 +1,19 @@
 import React from "react";
-import { StyleSheet, Text, View } from "react-native";
+import { FlatList, StyleSheet, View } from "react-native";
+
+import ClassroomCard from "../components/ClassroomCard";
 
 const HomeScreen = () => {
   return (
-    <View style={styles.homeScreen}>
-      <Text>Home Screen</Text>
-    </View>
+    <FlatList
+      contentContainerStyle={styles.homeScreen}
+      data={Array(10).fill()}
+      keyExtractor={(_, index) => index.toString()}
+      renderItem={() => <ClassroomCard />}
+      ItemSeparatorComponent={() => (
+        <View style={{ width: "100%", height: 10 }} />
+      )}
+    />
   );
 };
 
@@ -13,8 +21,8 @@ export default HomeScreen;
 
 const styles = StyleSheet.create({
   homeScreen: {
-    flex: 1,
-    justifyContent: "center",
+    backgroundColor: "#fff",
     alignItems: "center",
+    paddingVertical: 10,
   },
 });

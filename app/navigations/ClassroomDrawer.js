@@ -7,7 +7,7 @@ const Drawer = createDrawerNavigator();
 
 const ClassroomDrawer = () => {
   return (
-    <Drawer.Navigator>
+    <Drawer.Navigator screenOptions={{ headerShown: false }}>
       <Drawer.Screen name="HomeStack" component={HomeStack} />
     </Drawer.Navigator>
   );
