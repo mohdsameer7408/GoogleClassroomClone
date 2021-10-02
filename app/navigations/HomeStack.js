@@ -35,25 +35,6 @@ const HomeStack = ({ navigation }) => {
           component={HomeScreen}
           options={{
             title: "Google Classroom",
-            headerRight: () => (
-              <>
-                <HeaderButtons HeaderButtonComponent={ClassroomHeaderButton}>
-                  <Item
-                    title="user"
-                    iconName="person-circle"
-                    onPress={() => {}}
-                  />
-                </HeaderButtons>
-                <OverflowMenu
-                  OverflowIcon={
-                    <MaterialIcons name="more-vert" color="#000" size={26} />
-                  }
-                >
-                  <HiddenItem title="Refresh" />
-                  <HiddenItem title="Send Google feedback" />
-                </OverflowMenu>
-              </>
-            ),
           }}
         />
       </Stack.Navigator>

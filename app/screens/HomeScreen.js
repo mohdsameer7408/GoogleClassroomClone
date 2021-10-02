@@ -1,13 +1,47 @@
-import React, { useState } from "react";
+import React, { useLayoutEffect, useState } from "react";
 import { FlatList, StyleSheet, View } from "react-native";
+import {
+  HeaderButtons,
+  HiddenItem,
+  Item,
+  OverflowMenu,
+} from "react-navigation-header-buttons";
+import { MaterialIcons } from "@expo/vector-icons";
 
 import ClassroomCard from "../components/ClassroomCard";
+import ClassroomHeaderButton from "../components/ClassroomHeaderButton";
 import FloatingButton from "../components/FloatingButton";
+import ProfileModal from "../components/ProfileModal";
 
 let timeoutId = null;
 
-const HomeScreen = () => {
+const HomeScreen = ({ navigation }) => {
   const [isSteamUpdating, setIsSteamUpdating] = useState(false);
+  const [isProfileOpened, setIsProfileOpened] = useState(false);
+
+  useLayoutEffect(() => {
+    navigation.setOptions({
+      headerRight: () => (
+        <>
+          <HeaderButtons HeaderButtonComponent={ClassroomHeaderButton}>
+            <Item
+              title="user"
+              iconName="person-circle"
+              onPress={() => setIsProfileOpened(true)}
+            />
+          </HeaderButtons>
+          <OverflowMenu
+            OverflowIcon={
+              <MaterialIcons name="more-vert" color="#000" size={26} />
+            }
+          >
+            <HiddenItem title="Refresh" />
+            <HiddenItem title="Send Google feedback" />
+          </OverflowMenu>
+        </>
+      ),
+    });
+  }, [navigation, setIsProfileOpened]);
 
   const updateStream = async () => {
     setIsSteamUpdating(true);
@@ -31,6 +65,10 @@ const HomeScreen = () => {
         )}
       />
       <FloatingButton onButtonPress={() => {}} />
+      <ProfileModal
+        isOpened={isProfileOpened}
+        closeProfile={() => setIsProfileOpened(false)}
+      />
     </View>
   );
 };
