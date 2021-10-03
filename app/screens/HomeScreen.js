@@ -1,4 +1,4 @@
-import React, { useLayoutEffect, useState } from "react";
+import React, { useLayoutEffect, useState, useCallback } from "react";
 import { FlatList, StyleSheet, View } from "react-native";
 import {
   HeaderButtons,
@@ -12,12 +12,22 @@ import ClassroomCard from "../components/ClassroomCard";
 import ClassroomHeaderButton from "../components/ClassroomHeaderButton";
 import FloatingButton from "../components/FloatingButton";
 import ProfileModal from "../components/ProfileModal";
+import BottomSheet from "../components/BottomSheet";
 
 let timeoutId = null;
 
 const HomeScreen = ({ navigation }) => {
   const [isSteamUpdating, setIsSteamUpdating] = useState(false);
   const [isProfileOpened, setIsProfileOpened] = useState(false);
+  const [isSheetOpened, setIsSheetOpened] = useState(false);
+
+  const updateStream = useCallback(async () => {
+    setIsSteamUpdating(true);
+    timeoutId = setTimeout(() => {
+      setIsSteamUpdating(false);
+      clearTimeout(timeoutId);
+    }, 1000);
+  }, [setIsSteamUpdating]);
 
   useLayoutEffect(() => {
     navigation.setOptions({
@@ -35,21 +45,13 @@ const HomeScreen = ({ navigation }) => {
               <MaterialIcons name="more-vert" color="#000" size={26} />
             }
           >
-            <HiddenItem title="Refresh" />
+            <HiddenItem title="Refresh" onPress={updateStream} />
             <HiddenItem title="Send Google feedback" />
           </OverflowMenu>
         </>
       ),
     });
-  }, [navigation, setIsProfileOpened]);
-
-  const updateStream = async () => {
-    setIsSteamUpdating(true);
-    timeoutId = setTimeout(() => {
-      setIsSteamUpdating(false);
-      clearTimeout(timeoutId);
-    }, 1000);
-  };
+  }, [navigation, setIsProfileOpened, updateStream]);
 
   return (
     <View style={styles.homeScreen}>
@@ -64,10 +66,14 @@ const HomeScreen = ({ navigation }) => {
           <View style={{ width: "100%", height: 10 }} />
         )}
       />
-      <FloatingButton onButtonPress={() => {}} />
+      <FloatingButton onButtonPress={() => setIsSheetOpened(true)} />
       <ProfileModal
         isOpened={isProfileOpened}
         closeProfile={() => setIsProfileOpened(false)}
+      />
+      <BottomSheet
+        isSheetOpened={isSheetOpened}
+        closeSheet={() => setIsSheetOpened(false)}
       />
     </View>
   );
