@@ -1,8 +1,10 @@
 import React from "react";
-import { StyleSheet } from "react-native";
+import { StyleSheet, Dimensions } from "react-native";
 import { Ionicons } from "@expo/vector-icons";
 
 import TouchableComponent from "./TouchableComponent";
+
+const { width } = Dimensions.get("window");
 
 const FloatingButton = ({ onButtonPress }) => {
   return (
@@ -23,9 +25,9 @@ const styles = StyleSheet.create({
     position: "absolute",
     bottom: 16,
     right: 16,
-    width: 60,
-    height: 60,
-    borderRadius: 30,
+    width: width * 0.17,
+    height: width * 0.17,
+    borderRadius: (width * 0.17) / 2,
     shadowColor: "#000",
     shadowOffset: {
       width: 0,
