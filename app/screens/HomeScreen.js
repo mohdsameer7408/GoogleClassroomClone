@@ -13,13 +13,16 @@ import ClassroomHeaderButton from "../components/ClassroomHeaderButton";
 import FloatingButton from "../components/FloatingButton";
 import ProfileModal from "../components/ProfileModal";
 import BottomSheet from "../components/BottomSheet";
+import FeedbackPopup from "../components/FeedbackPopup";
 
 let timeoutId = null;
+let popupId = null;
 
 const HomeScreen = ({ navigation }) => {
   const [isSteamUpdating, setIsSteamUpdating] = useState(false);
   const [isProfileOpened, setIsProfileOpened] = useState(false);
   const [isSheetOpened, setIsSheetOpened] = useState(false);
+  const [isPopupActive, setIsPopupActive] = useState(false);
 
   const updateStream = useCallback(async () => {
     setIsSteamUpdating(true);
@@ -28,6 +31,14 @@ const HomeScreen = ({ navigation }) => {
       clearTimeout(timeoutId);
     }, 1000);
   }, [setIsSteamUpdating]);
+
+  const sendFeedback = useCallback(async () => {
+    setIsPopupActive(true);
+    popupId = setTimeout(() => {
+      setIsPopupActive(false);
+      clearTimeout(popupId);
+    }, 1000);
+  }, [setIsPopupActive]);
 
   useLayoutEffect(() => {
     navigation.setOptions({
@@ -46,7 +57,7 @@ const HomeScreen = ({ navigation }) => {
             }
           >
             <HiddenItem title="Refresh" onPress={updateStream} />
-            <HiddenItem title="Send Google feedback" />
+            <HiddenItem title="Send Google feedback" onPress={sendFeedback} />
           </OverflowMenu>
         </>
       ),
@@ -75,6 +86,7 @@ const HomeScreen = ({ navigation }) => {
         isSheetOpened={isSheetOpened}
         closeSheet={() => setIsSheetOpened(false)}
       />
+      {isPopupActive && <FeedbackPopup />}
     </View>
   );
 };
