@@ -86,7 +86,7 @@ const HomeScreen = ({ navigation }) => {
         isSheetOpened={isSheetOpened}
         closeSheet={() => setIsSheetOpened(false)}
       />
-      {isPopupActive && <FeedbackPopup />}
+      {isPopupActive && <FeedbackPopup message="Sending Feedback..." />}
     </View>
   );
 };

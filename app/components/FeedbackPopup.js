@@ -1,10 +1,10 @@
 import React from "react";
 import { StyleSheet, Text, View } from "react-native";
 
-const FeedbackPopup = () => {
+const FeedbackPopup = ({ message }) => {
   return (
     <View style={styles.popupContainer}>
-      <Text>Sending Feedback...</Text>
+      <Text>{message}</Text>
     </View>
   );
 };
