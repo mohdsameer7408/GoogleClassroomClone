@@ -72,7 +72,11 @@ const HomeScreen = ({ navigation }) => {
         onRefresh={updateStream}
         data={Array(10).fill()}
         keyExtractor={(_, index) => index.toString()}
-        renderItem={() => <ClassroomCard />}
+        renderItem={() => (
+          <ClassroomCard
+            openClassroom={() => navigation.navigate("ClassroomScreen")}
+          />
+        )}
         ItemSeparatorComponent={() => (
           <View style={{ width: "100%", height: 10 }} />
         )}

@@ -2,15 +2,13 @@ import React from "react";
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
 import {
   HeaderButtons,
-  HiddenItem,
   Item,
-  OverflowMenu,
   OverflowMenuProvider,
 } from "react-navigation-header-buttons";
-import { MaterialIcons } from "@expo/vector-icons";
 
 import HomeScreen from "../screens/HomeScreen";
 import ClassroomHeaderButton from "../components/ClassroomHeaderButton";
+import ClassroomScreen from "../screens/ClassroomScreen";
 
 const Stack = createNativeStackNavigator();
 
@@ -35,6 +33,13 @@ const HomeStack = ({ navigation }) => {
           component={HomeScreen}
           options={{
             title: "Google Classroom",
+          }}
+        />
+        <Stack.Screen
+          name="ClassroomScreen"
+          component={ClassroomScreen}
+          options={{
+            title: "",
           }}
         />
       </Stack.Navigator>

@@ -12,9 +12,9 @@ import TouchableComponent from "./TouchableComponent";
 
 const { width } = Dimensions.get("window");
 
-const ClassroomCard = () => {
+const ClassroomCard = ({ openClassroom }) => {
   return (
-    <TouchableComponent containerStyle={styles.card} onPress={() => {}}>
+    <TouchableComponent containerStyle={styles.card} onPress={openClassroom}>
       <ImageBackground
         style={styles.cardWrapper}
         resizeMode="cover"
