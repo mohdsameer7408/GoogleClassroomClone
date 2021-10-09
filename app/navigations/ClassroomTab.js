@@ -29,6 +29,7 @@ const ClassroomTab = ({ navigation }) => {
           </HeaderButtons>
         ),
         tabBarActiveTintColor: "#1A73E8",
+        tabBarInactiveTintColor: "#555",
         tabBarLabelStyle: { fontSize: 14, fontWeight: "bold" },
         tabBarIcon: ({ color, size }) => {
           if (route.name === "StreamStack") {

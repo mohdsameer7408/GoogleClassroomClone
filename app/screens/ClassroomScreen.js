@@ -1,5 +1,5 @@
 import React, { useCallback, useLayoutEffect, useState } from "react";
-import { Dimensions, StyleSheet, View } from "react-native";
+import { FlatList, StyleSheet, View } from "react-native";
 import {
   HeaderButtons,
   HiddenItem,
@@ -11,8 +11,8 @@ import { MaterialIcons } from "@expo/vector-icons";
 import ClassroomHeaderButton from "../components/ClassroomHeaderButton";
 import ClassroomHeader from "../components/ClassroomHeader";
 import FeedbackPopup from "../components/FeedbackPopup";
+import AssignmentCard from "../components/AssignmentCard";
 
-const { width } = Dimensions.get("window");
 let timeoutId = null;
 let popupId = null;
 
@@ -60,7 +60,18 @@ const ClassroomScreen = ({ navigation }) => {
 
   return (
     <View style={styles.classroomScreen}>
-      <ClassroomHeader />
+      <FlatList
+        contentContainerStyle={styles.classroomScreenList}
+        onRefresh={updateStream}
+        refreshing={isSteamUpdating}
+        data={Array(10).fill()}
+        keyExtractor={(_, index) => index.toString()}
+        ListHeaderComponent={<ClassroomHeader />}
+        ItemSeparatorComponent={() => (
+          <View style={{ width: "100%", height: 10 }} />
+        )}
+        renderItem={() => <AssignmentCard />}
+      />
       {isPopupActive && <FeedbackPopup message="Sending Feedback..." />}
     </View>
   );
@@ -71,6 +82,9 @@ export default ClassroomScreen;
 const styles = StyleSheet.create({
   classroomScreen: {
     flex: 1,
+    backgroundColor: "#fff",
+  },
+  classroomScreenList: {
     alignItems: "center",
   },
 });
