@@ -25,9 +25,9 @@ const styles = StyleSheet.create({
     position: "absolute",
     bottom: 16,
     right: 16,
-    width: width * 0.17,
-    height: width * 0.17,
-    borderRadius: (width * 0.17) / 2,
+    width: width * 0.16,
+    height: width * 0.16,
+    borderRadius: (width * 0.16) / 2,
     shadowColor: "#000",
     shadowOffset: {
       width: 0,
