@@ -1,5 +1,5 @@
 import React from "react";
-import { createNativeStackNavigator } from "@react-navigation/native-stack";
+import { createStackNavigator } from "@react-navigation/stack";
 import {
   HeaderButtons,
   Item,
@@ -8,9 +8,9 @@ import {
 
 import HomeScreen from "../screens/HomeScreen";
 import ClassroomHeaderButton from "../components/ClassroomHeaderButton";
-import ClassroomScreen from "../screens/ClassroomScreen";
+import ClassroomTab from "./ClassroomTab";
 
-const Stack = createNativeStackNavigator();
+const Stack = createStackNavigator();
 
 const HomeStack = ({ navigation }) => {
   return (
@@ -32,15 +32,13 @@ const HomeStack = ({ navigation }) => {
           name="HomeScreen"
           component={HomeScreen}
           options={{
-            title: "Google Classroom",
+            headerTitle: "Google Classroom",
           }}
         />
         <Stack.Screen
-          name="ClassroomScreen"
-          component={ClassroomScreen}
-          options={{
-            title: "",
-          }}
+          name="ClassroomTab"
+          component={ClassroomTab}
+          options={{ headerShown: false }}
         />
       </Stack.Navigator>
     </OverflowMenuProvider>

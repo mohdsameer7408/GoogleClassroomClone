@@ -10,6 +10,7 @@ import { MaterialIcons } from "@expo/vector-icons";
 
 import ClassroomHeaderButton from "../components/ClassroomHeaderButton";
 import ClassroomHeader from "../components/ClassroomHeader";
+import FeedbackPopup from "../components/FeedbackPopup";
 
 const { width } = Dimensions.get("window");
 let timeoutId = null;
@@ -38,14 +39,12 @@ const ClassroomScreen = ({ navigation }) => {
   useLayoutEffect(() => {
     navigation.setOptions({
       headerRight: () => (
-        <>
-          <HeaderButtons HeaderButtonComponent={ClassroomHeaderButton}>
-            <Item
-              title="user"
-              iconName="information-circle-outline"
-              onPress={() => {}}
-            />
-          </HeaderButtons>
+        <HeaderButtons HeaderButtonComponent={ClassroomHeaderButton}>
+          <Item
+            title="user"
+            iconName="information-circle-outline"
+            onPress={() => {}}
+          />
           <OverflowMenu
             OverflowIcon={
               <MaterialIcons name="more-vert" color="#000" size={26} />
@@ -54,7 +53,7 @@ const ClassroomScreen = ({ navigation }) => {
             <HiddenItem title="Refresh" onPress={updateStream} />
             <HiddenItem title="Send Google feedback" onPress={sendFeedback} />
           </OverflowMenu>
-        </>
+        </HeaderButtons>
       ),
     });
   }, [navigation, updateStream, sendFeedback]);
@@ -62,6 +61,7 @@ const ClassroomScreen = ({ navigation }) => {
   return (
     <View style={styles.classroomScreen}>
       <ClassroomHeader />
+      {isPopupActive && <FeedbackPopup message="Sending Feedback..." />}
     </View>
   );
 };

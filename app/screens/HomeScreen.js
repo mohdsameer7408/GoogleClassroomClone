@@ -43,14 +43,12 @@ const HomeScreen = ({ navigation }) => {
   useLayoutEffect(() => {
     navigation.setOptions({
       headerRight: () => (
-        <>
-          <HeaderButtons HeaderButtonComponent={ClassroomHeaderButton}>
-            <Item
-              title="user"
-              iconName="person-circle"
-              onPress={() => setIsProfileOpened(true)}
-            />
-          </HeaderButtons>
+        <HeaderButtons HeaderButtonComponent={ClassroomHeaderButton}>
+          <Item
+            title="user"
+            iconName="person-circle"
+            onPress={() => setIsProfileOpened(true)}
+          />
           <OverflowMenu
             OverflowIcon={
               <MaterialIcons name="more-vert" color="#000" size={26} />
@@ -59,7 +57,7 @@ const HomeScreen = ({ navigation }) => {
             <HiddenItem title="Refresh" onPress={updateStream} />
             <HiddenItem title="Send Google feedback" onPress={sendFeedback} />
           </OverflowMenu>
-        </>
+        </HeaderButtons>
       ),
     });
   }, [navigation, setIsProfileOpened, updateStream]);
@@ -74,7 +72,7 @@ const HomeScreen = ({ navigation }) => {
         keyExtractor={(_, index) => index.toString()}
         renderItem={() => (
           <ClassroomCard
-            openClassroom={() => navigation.navigate("ClassroomScreen")}
+            openClassroom={() => navigation.navigate("ClassroomTab")}
           />
         )}
         ItemSeparatorComponent={() => (

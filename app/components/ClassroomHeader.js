@@ -53,7 +53,7 @@ const styles = StyleSheet.create({
   header: {
     overflow: "hidden",
     width: width * 0.96,
-    height: 116,
+    height: 110,
     borderRadius: 8,
     marginBottom: 10,
   },
