@@ -18,7 +18,8 @@ const ClassroomTab = ({ navigation }) => {
   return (
     <Tab.Navigator
       screenOptions={({ route }) => ({
-        title: "Android App Dev",
+        headerTitle: "Android App Dev",
+        headerTintColor: "#2653d9",
         headerLeft: () => (
           <HeaderButtons HeaderButtonComponent={ClassroomHeaderButton}>
             <Item
