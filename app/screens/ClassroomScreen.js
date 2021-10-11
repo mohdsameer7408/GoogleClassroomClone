@@ -41,7 +41,7 @@ const ClassroomScreen = ({ navigation }) => {
       headerRight: () => (
         <HeaderButtons HeaderButtonComponent={ClassroomHeaderButton}>
           <Item
-            title="user"
+            title="info"
             iconName="information-circle-outline"
             onPress={() => {}}
           />
