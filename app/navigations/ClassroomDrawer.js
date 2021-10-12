@@ -6,11 +6,13 @@ import {
   MaterialCommunityIcons,
   MaterialIcons,
 } from "@expo/vector-icons";
+import { HeaderButtons, Item } from "react-navigation-header-buttons";
 
 import DrawerContent from "./DrawerContent";
 import HomeStack from "./HomeStack";
 import CalendarScreen from "../screens/CalendarScreen";
 import NotificationScreen from "../screens/NotificationScreen";
+import ClassroomHeaderButton from "../components/ClassroomHeaderButton";
 
 const Drawer = createDrawerNavigator();
 const { width } = Dimensions.get("window");
@@ -57,12 +59,23 @@ const ClassroomDrawer = () => {
       <Drawer.Screen
         name="NotoficationScreen"
         component={NotificationScreen}
-        options={{
+        options={({ navigation }) => ({
           drawerIcon: ({ color, size }) => (
             <Ionicons name="notifications-outline" color={color} size={size} />
           ),
           drawerLabel: "Notifications",
-        }}
+          headerShown: true,
+          headerTitle: "Notifications",
+          headerLeft: () => (
+            <HeaderButtons HeaderButtonComponent={ClassroomHeaderButton}>
+              <Item
+                title="close"
+                iconName="close-sharp"
+                onPress={() => navigation.goBack()}
+              />
+            </HeaderButtons>
+          ),
+        })}
       />
     </Drawer.Navigator>
   );
