@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import {
   Dimensions,
   ImageBackground,
@@ -9,10 +9,13 @@ import {
 import { MaterialIcons } from "@expo/vector-icons";
 
 import TouchableComponent from "./TouchableComponent";
+import UnenrollButton from "./UnenrollButton";
 
 const { width } = Dimensions.get("window");
 
 const ClassroomCard = ({ openClassroom }) => {
+  const [isUnenrollVisible, setIsUnenrollVisible] = useState(false);
+
   return (
     <TouchableComponent containerStyle={styles.card} onPress={openClassroom}>
       <ImageBackground
@@ -31,11 +34,15 @@ const ClassroomCard = ({ openClassroom }) => {
             <TouchableComponent
               containerStyle={styles.detailsRight}
               wrapperStyle={styles.detailsRight}
+              onPress={() => setIsUnenrollVisible(true)}
             >
               <MaterialIcons name="more-vert" color="#fff" size={24} />
             </TouchableComponent>
           </View>
           <Text style={styles.facultyName}>John Smith</Text>
+          {isUnenrollVisible && (
+            <UnenrollButton dismiss={() => setIsUnenrollVisible(false)} />
+          )}
         </View>
       </ImageBackground>
     </TouchableComponent>
