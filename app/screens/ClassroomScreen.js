@@ -12,11 +12,12 @@ import ClassroomHeaderButton from "../components/ClassroomHeaderButton";
 import ClassroomHeader from "../components/ClassroomHeader";
 import FeedbackPopup from "../components/FeedbackPopup";
 import AssignmentCard from "../components/AssignmentCard";
+import ClassroomFallback from "../components/ClassroomFallback";
 
 let timeoutId = null;
 let popupId = null;
 
-const ClassroomScreen = ({ navigation }) => {
+const ClassroomScreen = ({ navigation, route }) => {
   const [isSteamUpdating, setIsSteamUpdating] = useState(false);
   const [isPopupActive, setIsPopupActive] = useState(false);
 
@@ -60,18 +61,25 @@ const ClassroomScreen = ({ navigation }) => {
 
   return (
     <View style={styles.classroomScreen}>
-      <FlatList
-        contentContainerStyle={styles.classroomScreenList}
-        onRefresh={updateStream}
-        refreshing={isSteamUpdating}
-        data={Array(10).fill()}
-        keyExtractor={(_, index) => index.toString()}
-        ListHeaderComponent={<ClassroomHeader />}
-        ItemSeparatorComponent={() => (
-          <View style={{ width: "100%", height: 10 }} />
-        )}
-        renderItem={() => <AssignmentCard />}
-      />
+      {route.params.posts ? (
+        <FlatList
+          contentContainerStyle={styles.classroomScreenList}
+          onRefresh={updateStream}
+          refreshing={isSteamUpdating}
+          data={Array(10).fill()}
+          keyExtractor={(_, index) => index.toString()}
+          ListHeaderComponent={<ClassroomHeader />}
+          ItemSeparatorComponent={() => (
+            <View style={{ width: "100%", height: 10 }} />
+          )}
+          renderItem={() => <AssignmentCard />}
+        />
+      ) : (
+        <View style={styles.classroomScreenList}>
+          <ClassroomHeader />
+          <ClassroomFallback message="No posts yet, but check back soon" />
+        </View>
+      )}
       {isPopupActive && <FeedbackPopup message="Sending Feedback..." />}
     </View>
   );

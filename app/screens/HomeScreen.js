@@ -70,9 +70,17 @@ const HomeScreen = ({ navigation }) => {
         onRefresh={updateStream}
         data={Array(10).fill()}
         keyExtractor={(_, index) => index.toString()}
-        renderItem={() => (
+        renderItem={({ index }) => (
           <ClassroomCard
-            openClassroom={() => navigation.navigate("ClassroomTab")}
+            openClassroom={() =>
+              navigation.navigate("ClassroomTab", {
+                screen: "StreamStack",
+                params: {
+                  screen: "ClassroomScreen",
+                  params: { posts: index !== 2 },
+                },
+              })
+            }
           />
         )}
         ItemSeparatorComponent={() => (
