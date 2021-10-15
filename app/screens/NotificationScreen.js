@@ -24,7 +24,7 @@ const NotificationScreen = ({ navigation }) => {
     timeoutId = setTimeout(() => {
       setIsSteamUpdating(false);
       clearTimeout(timeoutId);
-    }, 1000);
+    }, 1200);
   }, [setIsSteamUpdating]);
 
   const sendFeedback = useCallback(async () => {
