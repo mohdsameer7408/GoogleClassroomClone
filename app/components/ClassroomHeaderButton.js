@@ -7,7 +7,7 @@ const ClassroomHeaderButton = (props) => {
     <HeaderButton
       {...props}
       iconSize={26}
-      color="#222"
+      color="#555"
       IconComponent={Ionicons}
     />
   );

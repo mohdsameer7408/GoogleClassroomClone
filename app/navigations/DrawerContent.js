@@ -49,6 +49,7 @@ const styles = StyleSheet.create({
   },
   headerTitle: {
     fontSize: 19,
+    marginBottom: 5,
   },
   drawerContent: {
     flex: 1,
