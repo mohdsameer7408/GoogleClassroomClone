@@ -34,7 +34,7 @@ const styles = StyleSheet.create({
     top: 60,
     right: 0,
     width: width * 0.38,
-    height: 52,
+    height: 53,
     borderRadius: 4,
   },
   unenrollButtonWrapper: {
