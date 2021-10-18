@@ -30,6 +30,7 @@ const ShareScreen = ({ navigation }) => {
     navigation.setOptions({
       headerRight: () => (
         <HeaderButtons HeaderButtonComponent={ClassroomHeaderButtonLight}>
+          <Item title="attachment" iconName="attach" onPress={() => {}} />
           <Item
             title="post"
             iconName="send-sharp"
