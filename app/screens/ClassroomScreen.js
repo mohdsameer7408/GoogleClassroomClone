@@ -68,7 +68,11 @@ const ClassroomScreen = ({ navigation, route }) => {
           refreshing={isSteamUpdating}
           data={Array(10).fill()}
           keyExtractor={(_, index) => index.toString()}
-          ListHeaderComponent={<ClassroomHeader />}
+          ListHeaderComponent={
+            <ClassroomHeader
+              openShare={() => navigation.navigate("ShareScreen")}
+            />
+          }
           ItemSeparatorComponent={() => (
             <View style={{ width: "100%", height: 10 }} />
           )}

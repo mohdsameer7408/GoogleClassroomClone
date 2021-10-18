@@ -1,9 +1,11 @@
 import React from "react";
+import { createStackNavigator } from "@react-navigation/stack";
 import { HeaderButtons, Item } from "react-navigation-header-buttons";
 
-import ClassroomScreen from "../screens/ClassroomScreen";
 import ClassroomHeaderButton from "../components/ClassroomHeaderButton";
-import { createStackNavigator } from "@react-navigation/stack";
+import ClassroomHeaderButtonLight from "../components/ClassroomHeaderButtonLight";
+import ClassroomScreen from "../screens/ClassroomScreen";
+import ShareScreen from "../screens/ShareScreen";
 
 const Stack = createStackNavigator();
 
@@ -26,6 +28,23 @@ const StreamStack = ({ navigation }) => {
         name="ClassroomScreen"
         component={ClassroomScreen}
         options={{ headerTitle: "" }}
+      />
+      <Stack.Screen
+        name="ShareScreen"
+        component={ShareScreen}
+        options={({ navigation }) => ({
+          headerTitle: "",
+          headerStyle: { backgroundColor: "#1A73E8" },
+          headerLeft: () => (
+            <HeaderButtons HeaderButtonComponent={ClassroomHeaderButtonLight}>
+              <Item
+                title="close"
+                iconName="close-sharp"
+                onPress={() => navigation.goBack()}
+              />
+            </HeaderButtons>
+          ),
+        })}
       />
     </Stack.Navigator>
   );

@@ -12,7 +12,7 @@ import TouchableComponent from "./TouchableComponent";
 
 const { width } = Dimensions.get("window");
 
-const ClassroomHeader = () => {
+const ClassroomHeader = ({ openShare }) => {
   return (
     <View style={styles.headerContainer}>
       <ImageBackground
@@ -30,6 +30,7 @@ const ClassroomHeader = () => {
       <TouchableComponent
         containerStyle={styles.shareContainer}
         wrapperStyle={styles.shareWrapper}
+        onPress={openShare}
       >
         <Image
           style={styles.profileImage}
