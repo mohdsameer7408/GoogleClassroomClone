@@ -9,7 +9,7 @@ import {
 import { MaterialIcons } from "@expo/vector-icons";
 
 import FeedbackPopup from "../components/FeedbackPopup";
-import ClassroomHeaderButtonLight from "../components/ClassroomHeaderButtonLight";
+import ClassroomMaterialHeaderButton from "../components/ClassroomMaterialHeaderButton";
 
 const { width } = Dimensions.get("window");
 let popupId = null;
@@ -29,11 +29,11 @@ const ShareScreen = ({ navigation }) => {
   useLayoutEffect(() => {
     navigation.setOptions({
       headerRight: () => (
-        <HeaderButtons HeaderButtonComponent={ClassroomHeaderButtonLight}>
-          <Item title="attachment" iconName="attach" onPress={() => {}} />
+        <HeaderButtons HeaderButtonComponent={ClassroomMaterialHeaderButton}>
+          <Item title="attachment" iconName="attachment" onPress={() => {}} />
           <Item
             title="post"
-            iconName="send-sharp"
+            iconName="send"
             onPress={() => navigation.goBack()}
           />
           <OverflowMenu
