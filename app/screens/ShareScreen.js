@@ -67,12 +67,14 @@ const styles = StyleSheet.create({
   shareScreen: {
     flex: 1,
     alignItems: "center",
-    paddingTop: 10,
+    paddingTop: 20,
   },
   shareInput: {
     width: width * 0.92,
     height: 46,
-    borderBottomWidth: 2,
+    borderWidth: 2,
     borderColor: "#1A73E8",
+    borderRadius: 6,
+    paddingHorizontal: 12,
   },
 });
