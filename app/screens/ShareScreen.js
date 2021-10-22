@@ -55,6 +55,7 @@ const ShareScreen = ({ navigation }) => {
         style={styles.shareInput}
         value={postText}
         onChangeText={setPostText}
+        multiline
       />
       {isPopupActive && <FeedbackPopup message="Sending Feedback..." />}
     </View>
@@ -71,7 +72,7 @@ const styles = StyleSheet.create({
   },
   shareInput: {
     width: width * 0.92,
-    height: 46,
+    minHeight: 46,
     borderWidth: 2,
     borderColor: "#1A73E8",
     borderRadius: 6,
