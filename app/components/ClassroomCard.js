@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useCallback } from "react";
 import {
   Dimensions,
   ImageBackground,
@@ -10,11 +10,24 @@ import { MaterialIcons } from "@expo/vector-icons";
 
 import TouchableComponent from "./TouchableComponent";
 import UnenrollButton from "./UnenrollButton";
+import FeedbackPopup from "./FeedbackPopup";
 
 const { width } = Dimensions.get("window");
+let popupId = null;
 
 const ClassroomCard = ({ openClassroom }) => {
   const [isUnenrollVisible, setIsUnenrollVisible] = useState(false);
+  const [isPopupActive, setIsPopupActive] = useState(false);
+
+  const unenrollHandler = useCallback(() => {
+    setIsUnenrollVisible(false);
+    setIsPopupActive(true);
+
+    popupId = setTimeout(() => {
+      setIsPopupActive(false);
+      clearTimeout(popupId);
+    }, 1000);
+  }, [setIsPopupActive]);
 
   return (
     <TouchableComponent containerStyle={styles.card} onPress={openClassroom}>
@@ -41,9 +54,13 @@ const ClassroomCard = ({ openClassroom }) => {
           </View>
           <Text style={styles.facultyName}>John Smith</Text>
           {isUnenrollVisible && (
-            <UnenrollButton dismiss={() => setIsUnenrollVisible(false)} />
+            <UnenrollButton
+              dismiss={() => setIsUnenrollVisible(false)}
+              onUnenroll={unenrollHandler}
+            />
           )}
         </View>
+        {isPopupActive && <FeedbackPopup message="Unenrolled!" />}
       </ImageBackground>
     </TouchableComponent>
   );

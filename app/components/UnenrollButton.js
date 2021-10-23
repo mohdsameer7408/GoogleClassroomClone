@@ -5,13 +5,14 @@ import TouchableComponent from "./TouchableComponent";
 
 const { width, height } = Dimensions.get("window");
 
-const UnenrollButton = ({ dismiss }) => {
+const UnenrollButton = ({ dismiss, onUnenroll }) => {
   return (
     <>
       <Pressable style={styles.overlay} onPress={dismiss}></Pressable>
       <TouchableComponent
         containerStyle={styles.unenrollButton}
         wrapperStyle={styles.unenrollButtonWrapper}
+        onPress={onUnenroll}
       >
         <Text style={styles.buttonText}>Unenroll</Text>
       </TouchableComponent>
