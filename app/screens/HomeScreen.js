@@ -95,6 +95,7 @@ const HomeScreen = ({ navigation }) => {
       <BottomSheet
         isSheetOpened={isSheetOpened}
         closeSheet={() => setIsSheetOpened(false)}
+        openCreateClass={() => navigation.navigate("CreateClassScreen")}
       />
       {isPopupActive && <FeedbackPopup message="Sending Feedback..." />}
     </View>

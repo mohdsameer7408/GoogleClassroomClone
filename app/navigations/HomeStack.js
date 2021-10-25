@@ -5,6 +5,7 @@ import { HeaderButtons, Item } from "react-navigation-header-buttons";
 import HomeScreen from "../screens/HomeScreen";
 import ClassroomHeaderButton from "../components/ClassroomHeaderButton";
 import ClassroomTab from "./ClassroomTab";
+import CreateClassScreen from "../screens/CreateClassScreen";
 
 const Stack = createStackNavigator();
 
@@ -34,6 +35,22 @@ const HomeStack = ({ navigation }) => {
         name="ClassroomTab"
         component={ClassroomTab}
         options={{ headerShown: false }}
+      />
+      <Stack.Screen
+        name="CreateClassScreen"
+        component={CreateClassScreen}
+        options={() => ({
+          headerTitle: "Create Class",
+          headerLeft: () => (
+            <HeaderButtons HeaderButtonComponent={ClassroomHeaderButton}>
+              <Item
+                title="close"
+                iconName="close-sharp"
+                onPress={() => navigation.goBack()}
+              />
+            </HeaderButtons>
+          ),
+        })}
       />
     </Stack.Navigator>
   );
