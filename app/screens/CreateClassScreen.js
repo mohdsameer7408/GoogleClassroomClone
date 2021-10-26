@@ -1,5 +1,13 @@
 import React, { useCallback, useLayoutEffect, useState } from "react";
-import { Dimensions, StyleSheet, Text, TextInput, View } from "react-native";
+import {
+  Dimensions,
+  StyleSheet,
+  Text,
+  TextInput,
+  View,
+  KeyboardAvoidingView,
+  Platform,
+} from "react-native";
 import { HiddenItem, OverflowMenu } from "react-navigation-header-buttons";
 import { MaterialIcons } from "@expo/vector-icons";
 
@@ -44,13 +52,17 @@ const CreateClassScreen = ({ navigation }) => {
   }, [navigation, sendFeedback]);
 
   return (
-    <View style={styles.createClassScreen}>
+    <KeyboardAvoidingView
+      style={styles.createClassScreen}
+      behavior={Platform.OS === "ios" ? "padding" : null}
+      keyboardVerticalOffset={Platform.OS === "ios" ? 60 : 0}
+    >
       <TextInput placeholder="Class name (required)" style={styles.input} />
       <TextInput placeholder="Section" style={styles.input} />
       <TextInput placeholder="Room" style={styles.input} />
       <TextInput placeholder="Subject" style={styles.input} />
       {isPopupActive && <FeedbackPopup message="Sending Feedback..." />}
-    </View>
+    </KeyboardAvoidingView>
   );
 };
 
