@@ -3,7 +3,12 @@ import { Modal, Pressable, StyleSheet, Text, View } from "react-native";
 
 import TouchableComponent from "./TouchableComponent";
 
-const BottomSheet = ({ isSheetOpened, closeSheet, openCreateClass }) => {
+const BottomSheet = ({
+  isSheetOpened,
+  closeSheet,
+  openCreateClass,
+  openJoinClass,
+}) => {
   return (
     <Modal
       visible={isSheetOpened}
@@ -25,7 +30,7 @@ const BottomSheet = ({ isSheetOpened, closeSheet, openCreateClass }) => {
               <TouchableComponent
                 containerStyle={styles.button}
                 wrapperStyle={styles.buttonWrapper}
-                onPress={() => {}}
+                onPress={openJoinClass}
               >
                 <Text style={styles.buttonText}>Join Class</Text>
               </TouchableComponent>

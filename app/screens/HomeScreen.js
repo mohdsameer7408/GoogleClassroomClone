@@ -96,6 +96,7 @@ const HomeScreen = ({ navigation }) => {
         isSheetOpened={isSheetOpened}
         closeSheet={() => setIsSheetOpened(false)}
         openCreateClass={() => navigation.navigate("CreateClassScreen")}
+        openJoinClass={() => navigation.navigate("JoinClassScreen")}
       />
       {isPopupActive && <FeedbackPopup message="Sending Feedback..." />}
     </View>
