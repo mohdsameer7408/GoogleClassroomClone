@@ -11,7 +11,7 @@ import { HiddenItem, OverflowMenu } from "react-navigation-header-buttons";
 import { MaterialIcons } from "@expo/vector-icons";
 
 import FeedbackPopup from "../components/FeedbackPopup";
-import TouchableComponent from "../components/TouchableComponent";
+import ClassroomButton from "../components/ClassroomButton";
 
 let popupId = null;
 const { width } = Dimensions.get("window");
@@ -31,13 +31,10 @@ const JoinClassScreen = ({ navigation }) => {
     navigation.setOptions({
       headerRight: () => (
         <View style={styles.headerRightContainer}>
-          <TouchableComponent
-            containerStyle={styles.createButton}
-            wrapperStyle={styles.createButtonWrapper}
+          <ClassroomButton
             onPress={() => navigation.goBack()}
-          >
-            <Text style={styles.buttonText}>Join</Text>
-          </TouchableComponent>
+            buttonText="Join"
+          />
           <OverflowMenu
             OverflowIcon={
               <MaterialIcons name="more-vert" color="#000" size={26} />
@@ -103,20 +100,6 @@ const styles = StyleSheet.create({
   },
   headerRightContainer: {
     flexDirection: "row",
-  },
-  createButton: {
-    width: width * 0.23,
-    height: 40,
-    borderRadius: 4,
-  },
-  createButtonWrapper: {
-    justifyContent: "center",
-    alignItems: "center",
-    backgroundColor: "#1A73E8",
-  },
-  buttonText: {
-    color: "#fff",
-    fontSize: 16,
   },
   title: {
     color: "#222",
