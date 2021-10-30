@@ -21,7 +21,7 @@ export default ClassroomButton;
 
 const styles = StyleSheet.create({
   createButton: {
-    width: width * 0.23,
+    width: width * 0.233,
     height: 40,
     borderRadius: 4,
   },
