@@ -27,7 +27,7 @@ const ClassroomDrawer = () => {
         drawerActiveTintColor: "#1A73E8",
         drawerInactiveTintColor: "#000",
         drawerStyle: {
-          width: width * 0.75,
+          width: width * 0.73,
         },
       }}
       drawerContent={(props) => <DrawerContent {...props} />}
